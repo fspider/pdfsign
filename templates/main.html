@@ -1,0 +1,165 @@
+{% block title %}main{% endblock %} {% block main %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>Sign PDF!</title>
+  </head>
+
+  <body>
+    <div class="container mt-5 pt-5 ">
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <form
+            action="signpdf"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="hide_result();"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Sign Reason"
+                id="reason"
+                value="I am the author"
+              />
+            </div>
+            <div class="custom-file mb-3">
+              <input
+                type="file"
+                class="pdf-file-input custom-file-input"
+                id="pdf"
+                name="pdf"
+              />
+              <label class="pdf-file-label custom-file-label" for="pdf"
+                >Choose PDF file</label
+              >
+            </div>
+            <div class="custom-file mb-3">
+              <input
+                type="file"
+                class="p12-file-input custom-file-input"
+                id="p12"
+                name="p12"
+              />
+              <label class="p12-file-label custom-file-label" for="p12"
+                >Choose P12 file</label
+              >
+            </div>
+
+            <div class="form-group mt-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter password"
+                value="S!desoft@dm!n2019"
+                id="pwd"
+                name="pwd"
+              />
+            </div>
+            <div class="row mt-4">
+              <div class="form-group col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="X-PoS"
+                  id="pos_x"
+                  name="pos_x"
+                  value="100"
+                />
+              </div>
+              <div class="form-group col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Y-PoS"
+                  id="pos_y"
+                  name="pos_y"
+                  value="500"
+                />
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-primary mr-5">
+                Submit
+              </button>
+              <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" /> Remember me
+                </label>
+              </div>
+            </div>
+            <div class="result-div row mt-5 justify-content-center">
+              <a href="{{ url_for('download', filename=downpath) }}" download
+                >DOWNLOAD RESULT {{ result }}
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Add the following code if you want the name of the file appear on select
+      $(".pdf-file-input").on("change", function() {
+        var fileName = $(this)
+          .val()
+          .split("\\")
+          .pop();
+        $(this)
+          .siblings(".pdf-file-label")
+          .addClass("selected")
+          .html(fileName);
+      });
+      $(".p12-file-input").on("change", function() {
+        var fileName = $(this)
+          .val()
+          .split("\\")
+          .pop();
+        $(this)
+          .siblings(".p12-file-label")
+          .addClass("selected")
+          .html(fileName);
+      });
+
+      function hide_result() {
+        document.getElementsByClassName("result-div")[0].style.visibility =
+          "hidden";
+      }
+    </script>
+  </body>
+</html>
+{% endblock %}

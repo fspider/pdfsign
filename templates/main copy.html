@@ -1,0 +1,100 @@
+{% block title %}main{% endblock %} {% block main %}
+
+<body>
+  <style>
+    .input-panel {
+      padding-left: 100px;
+      padding-top: 50px;
+    }
+    .custom-text-label {
+    }
+    .text-input-div {
+      margin-top: 10px;
+    }
+    .result-div {
+      margin-top: 100px;
+    }
+  </style>
+
+  PDF SIGN API DEMO:<br />
+  <div class="row input-panel">
+    <form
+      action="signpdf"
+      method="POST"
+      enctype="multipart/form-data"
+      onsubmit="hide_result();"
+    >
+      <div class="text-input-div">
+        <label class="custom-file-label" for="pdf">Select PDF...</label>
+        <input
+          type="file"
+          class="custom-file-input"
+          name="pdf"
+          id="pdf"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <label class="custom-file-label" for="p12">Select P12...</label>
+        <input
+          type="file"
+          class="custom-file-input"
+          name="p12"
+          id="p12"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <label class="custom-text-label" for="pwd">Password : </label>
+        <input
+          type="password"
+          class="custom-pwd-input"
+          name="pwd"
+          id="pwd"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <label class="custom-text-label" for="reason">Reason : </label>
+        <input
+          type="text"
+          class="custom-reason-input"
+          name="reason"
+          id="reason"
+          value="I am the Author"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <label class="custom-text-label" for="pos_x">POS_X : </label>
+        <input
+          type="text"
+          class="custom-pos-input"
+          name="pos_x"
+          id="pos_x"
+          value="100"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <label class="custom-text-label" for="pos_y">POS_Y : </label>
+        <input
+          type="text"
+          class="custom-pos-input"
+          name="pos_y"
+          id="pos_y"
+          value="500"
+        /><br />
+      </div>
+      <div class="text-input-div">
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+    <div class="result-div">
+      <a> result = {{ result }}</a>
+    </div>
+  </div>
+</body>
+
+<script>
+  function hide_result() {
+    document.getElementsByClassName("result-div")[0].style.visibility =
+      "hidden";
+  }
+</script>
+{% endblock %}
