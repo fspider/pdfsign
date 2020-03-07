@@ -56,4 +56,4 @@ if __name__ == '__main__':
 
     # app.run()
     app.config["fixtures"] = "fixtures"
-    app.run(host='192.168.0.102', threaded=True)
+    app.run(host='127.0.0.1', threaded=True)
