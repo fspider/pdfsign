@@ -11,6 +11,6 @@ Provide PDF Sign API with Flask
 - flask
 - OpenSSL
 
-* Register OpenSSL Path to this api
+- Register OpenSSL Path to this api
 
 ##
